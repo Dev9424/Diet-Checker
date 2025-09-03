@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Diet Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f8f9fa;
+    }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #5a189a;
+    }
+    .quote-box {
+      background: linear-gradient(135deg, #b57edc, #8e44ad);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 25px auto;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      max-width: 800px;
+    }
+    .quote-box h3 {
+      font-size: 1.6rem;
+      font-weight: bold;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .quote-box i {
+      font-size: 2rem;
+      color: #ffdd57;
+      margin-right: 10px;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .card-header {
+      font-weight: bold;
+      font-size: 18px;
+      background: #b57edc;
+      color: #fff;
+      border-radius: 15px 15px 0 0 !important;
+    }
+    .btn-primary {
+      background-color: #9370db;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+    .btn-primary:hover {
+      background-color: #7a5dc7;
+    }
+    #result {
+      border-left: 5px solid #b57edc;
+    }
+    footer {
+      background: #b57edc;
+      color: white;
+      padding: 18px;
+      text-align: center;
+      border-radius: 15px 15px 0 0;
+      margin-top: 40px;
+      font-size: 18px;
+    }
+    footer a {
+      color: #ffdd57;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    footer i {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+
+    <h2 class="text-center mb-3">🌿 Advanced Diet Checker Form</h2>
+
+    <div class="quote-box">
+      <h3><i class="fas fa-quote-left"></i> A health journey is the sum of small efforts repeated day in and day out <i class="fas fa-quote-right"></i></h3>
+    </div>
+    
+    <form id="dietForm">
+
+      <div class="card mb-4">
+        <div class="card-header">Personal Information</div>
+        <div class="card-body row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Gender</label>
+            <select class="form-select" id="gender" required>
+              <option value="">Select...</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Height (cm)</label>
+            <input type="number" class="form-control" id="height" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Weight (kg)</label>
+            <input type="number" class="form-control" id="weight" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">BMI (Auto Calculated)</label>
+            <input type="text" class="form-control" id="bmi" readonly>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">Dietary Preferences</div>
+        <div class="card-body">
+          <label class="form-label">Choose Diet Type</label>
+          <select class="form-select" id="dietPref" required>
+            <option value="">Select...</option>
+            <option>Vegetarian</option>
+            <option>Non-Vegetarian</option>
+            <option>Vegan</option>
+            <option>Keto</option>
+            <option>Paleo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">Meal Tracking</div>
+        <div class="card-body row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Breakfast</label>
+            <textarea class="form-control" id="breakfast" rows="2"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Lunch</label>
+            <textarea class="form-control" id="lunch" rows="2"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Snacks</label>
+            <textarea class="form-control" id="snacks" rows="2"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Dinner</label>
+            <textarea class="form-control" id="dinner" rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4">
+        <div class="card-header">Health & Diet Goals</div>
+        <div class="card-body row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Primary Goal</label>
+            <select class="form-select" id="goal">
+              <option value="">Select...</option>
+              <option>Weight Loss</option>
+              <option>Muscle Gain</option>
+              <option>Maintain Weight</option>
+              <option>Improve Stamina</option>
+              <option>Healthy Eating</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Target Weight (kg)</label>
+            <input type="number" class="form-control" id="targetWeight">
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit Plan</button>
+      </div>
+    </form>
+
+    <div id="result" class="alert alert-light mt-4" style="display:none;"></div>
+  </div>
+
+  <footer>
+    <p>
+      <a href="https://www.linkedin.com/in/devansh-sarshode/" target="_blank">
+        <i class="fab fa-linkedin"></i> Connect with me on LinkedIn
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('weight').addEventListener('input', calculateBMI);
+    document.getElementById('height').addEventListener('input', calculateBMI);
+
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value) / 100;
+      if (weight > 0 && height > 0) {
+        const bmi = (weight / (height * height)).toFixed(2);
+        document.getElementById('bmi').value = bmi;
+      }
+    }
+
+    document.getElementById('dietForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const gender = document.getElementById('gender').value;
+      const bmi = document.getElementById('bmi').value;
+      const dietPref = document.getElementById('dietPref').value;
+      const breakfast = document.getElementById('breakfast').value;
+      const lunch = document.getElementById('lunch').value;
+      const snacks = document.getElementById('snacks').value;
+      const dinner = document.getElementById('dinner').value;
+      const goal = document.getElementById('goal').value;
+      const targetWeight = document.getElementById('targetWeight').value;
+
+      let bmiCategory = "";
+      if (bmi < 18.5) bmiCategory = "Underweight";
+      else if (bmi < 24.9) bmiCategory = "Normal Weight";
+      else if (bmi < 29.9) bmiCategory = "Overweight";
+      else bmiCategory = "Obese";
+
+      document.getElementById('result').style.display = "block";
+      document.getElementById('result').innerHTML = `
+        <h5 class="text-secondary">📋 Summary for ${name}</h5>
+        <p><b>Age:</b> ${age} | <b>Gender:</b> ${gender}</p>
+        <p><b>BMI:</b> ${bmi} (${bmiCategory})</p>
+        <p><b>Diet Preference:</b> ${dietPref}</p>
+        <p><b>Goal:</b> ${goal} ${targetWeight ? `(Target: ${targetWeight} kg)` : ""}</p>
+        <h6 class="mt-3">🍽 Meal Plan</h6>
+        <ul>
+          <li><b>Breakfast:</b> ${breakfast}</li>
+          <li><b>Lunch:</b> ${lunch}</li>
+          <li><b>Snacks:</b> ${snacks}</li>
+          <li><b>Dinner:</b> ${dinner}</li>
+        </ul>
+      `;
+    });
+  </script>
+</body>
+</html>
